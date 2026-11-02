@@ -12,12 +12,18 @@ from .Items import Borderlands2Item
 from .Options import Borderlands2Options
 from .Regions import region_data_table, progressive_travel_dict, progressive_travel_items
 from .archi_defs import loc_name_to_id, item_id_to_name, gear_data_table, item_data_table, item_name_to_id as item_name_to_raw_id, BL2ArchiData
+from .Tracker import bl2_map_tracker_index
 import random
 from copy import deepcopy
 
 VERSION = "0.5.6"
 
+class UTPackPath(FilePath):
+    required = False
+    ut_dialog_name = "Select PopTracker Pack (optional)"
 
+class Borderlands2Settings(settings.Group):
+    ut_pack_path: Union[UTPackPath, str] = UTPackPath()
 
 class Borderlands2WebWorld(WebWorld):
     theme = "ice"
@@ -53,6 +59,18 @@ class Borderlands2World(World):
 
     game = bl2_name
     web = Borderlands2WebWorld()
+
+    # tracker_world for UT PopTracker Pack
+    tracker_world: ClassVar = {
+        "external_pack_key": "ut_pack_path",
+        "map_page_maps": ["maps/maps.json"],
+        "map_page_locations": ["locations/MapPlacements.json", "locations/Overworld.json"],
+        "map_page_layouts": ["layouts/tabs.json"],
+        "item_page_items": ["items/items.json", "items/location_items.json"],
+        "item_page_item_layouts": ["layouts/character.json", "layouts/travel.json"],
+        "map_page_setting_key": "Slot:{player}:current_map",
+        "map_page_index": bl2_map_tracker_index,
+    }
 
     # UT Yaml-less flag
     ut_can_gen_without_yaml = True

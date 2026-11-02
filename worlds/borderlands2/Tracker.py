@@ -1,0 +1,100 @@
+from typing import Any
+
+def bl2_map_tracker_index(data: Any) -> int:
+    if data is None or data == "" or data == b"":
+        return 0
+
+    try: 
+        if isinstance(data, str):
+            data = data.strip()
+            if not data:
+                return 0
+            internal_map_id = data
+    except (ValueError, TypeError):
+        return 0
+
+    internal_map_to_tab = {
+    "fyrestone_p":              36,
+    "luckys_p":                 24,
+    "southpawfactory_p":        13,
+    "sanctuary_hole_p":         30,
+    "finalbossascent_p":        38,
+    "dam_p":                    15,
+    "frost_p":                  12,
+    "sanctuary_p":              5,
+    "sanctuaryair_p":           6,
+    "grass_cliffs_p":           28,
+    "tundratrain_p":            19,
+    "pandorapark_p":            25,
+    "thresherraid_p":           40,
+    "tundraexpress_p":          18,
+    "fridge_p":                 20,
+    "banditslaughter_p":        21,
+    "cove_p":                   9,
+    "icecanyon_p":              11,
+    "ice_p":                    10,
+    "grass_p":                  22,
+    "creatureslaughter_p":      26,
+    "interlude_p":              14,
+    "hypinterlude_p":           17,
+    "hyperioncity_p":           27,
+    "damtop_p":                 16,
+    "stockade_p":               37,
+    "southernshelf_p":          8,
+    "outwash_p":                22,
+    "caverns_p":                31,
+    "grass_lynchwood_p":        32,
+    "glacial_p":                7,
+    "craterlake_p":             35,
+    "robotslaughter_p":         34,
+    "boss_cliffs_p":            29,
+    "vogchamber_p":             29,
+    "boss_volcano_p":           39,
+    "ash_p":                    33,
+    "hunger_p":                 77,
+    "xmas_p":                   79,
+    "helios_p":                 73,
+    "gaiussanctuary_p":         75,
+    "backburner_p":             70,
+    "sanctintro_p":             69,
+    "olddust_p":                71,
+    "researchcenter_p":         74,
+    "sandworm_p":               72,
+    "sandwormlair_p":           76,
+    "dark_forest_p":            61,
+    "dead_forest_p":            62,
+    "castlekeep_p":             66,
+    "docks_p":                  59,
+    "village_p":                60,
+    "castleexterior_p":         64,
+    "dungeon_p":                65,
+    "templeslaughter_p":        67,
+    "mines_p":                  63,
+    "dungeonraid_p":            68,
+    "pumpkin_patch_p":          77,
+    "iris_dl1_p":               49,
+    "iris_dl1_tas_p":           49,
+    "iris_dl2_p":               50,
+    "iris_dl3_p":               53,
+    "iris_hub_p":               48,
+    "iris_hub2_p":              52,
+    "iris_dl2_interior_p":      51,
+    "iris_moxxi_p":             48,
+    "testingzone_p":            82,
+    "easter_p":                 81,
+    "distillery_p":             80,
+    "orchid_wormbelly_p":       47,
+    "orchid_refinery_p":        45,
+    "orchid_saltflats_p":       42,
+    "orchid_spire_p":           46,
+    "orchid_shipgraveyard_p":   44,
+    "orchid_caves_p":           43,
+    "orchid_oasistown_p":       41,
+    "sage_powerstation_p":      56,
+    "sage_underground_p":       54,
+    "sage_cliffs_p":            57,
+    "sage_hyperionship_p":      58,
+    "sage_rockforest_p":        55,
+    }
+    
+    return internal_map_to_tab.get(internal_map_id, 0)
